@@ -1,54 +1,48 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
 
+const TimelineDot = ({ active, label }: { active?: boolean, label: string }) => (
+    <div className="flex flex-col items-center gap-4 relative z-10 w-1/3">
+        <div className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${active ? 'bg-teal border-teal shadow-[0_0_15px_rgba(45,212,191,0.6)] animate-pulse' : 'bg-void border-white/20'}`}></div>
+        <span className={`text-xs font-sans tracking-widest uppercase text-center ${active ? 'text-teal font-bold' : 'text-muted'}`}>{label}</span>
+    </div>
+);
+
 export const VisionSection: React.FC = () => {
   return (
-    <section className="relative py-40 md:py-52 px-6 flex flex-col items-center justify-center min-h-[90vh] overflow-hidden">
+    <section className="relative py-40 md:py-52 px-6 flex flex-col items-center justify-center min-h-[80vh] overflow-hidden">
       {/* Background Atmosphere */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-cyan/5 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-teal/5 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
       
       <div className="container mx-auto max-w-4xl text-center relative z-10">
         
         {/* Header */}
         <FadeIn>
-          <span className="font-sans text-gold/80 text-sm tracking-[0.2em] uppercase mb-6 block">Future Pacing</span>
-          <h2 className="font-serif text-5xl md:text-7xl text-bone mb-12 leading-[1.05]">
+          <h2 className="font-serif text-5xl md:text-6xl text-bone mb-6 leading-[1.05]">
             The Neuro-Somatic<br/>Reset Protocol
           </h2>
+          <p className="font-sans text-lg text-muted mb-16 max-w-xl mx-auto">
+              A comprehensive 12-week clinical program designed to <span className="text-teal/90">recalibrate the auditory-limbic loop</span>.
+          </p>
         </FadeIn>
 
-        {/* Progress System */}
-        <FadeIn delay={200} className="w-full max-w-xl mx-auto mb-12">
-            <div className="flex justify-between items-end mb-3">
-                <span className="font-mono text-cyan text-xs tracking-widest uppercase">System Reboot Sequence</span>
-                <span className="font-mono text-cyan text-xs">75%</span>
-            </div>
+        {/* Roadmap Timeline */}
+        <FadeIn delay={200} className="w-full max-w-3xl mx-auto mb-20 relative">
+            {/* Line */}
+            <div className="absolute top-2 left-[16%] right-[16%] h-0.5 bg-white/10 -z-0"></div>
             
-            {/* Bar Track */}
-            <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden relative">
-                {/* Bar Fill */}
-                <div className="absolute inset-y-0 left-0 bg-cyan w-[75%] shadow-[0_0_15px_rgba(0,212,255,0.5)]">
-                    {/* Shimmer Animation */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent w-full -translate-x-full animate-[shimmer_2s_infinite]"></div>
-                </div>
-            </div>
-            <style>{`
-                @keyframes shimmer {
-                    100% { transform: translateX(100%); }
-                }
-            `}</style>
-
-            <div className="flex justify-between items-start mt-3">
-                <span className="font-mono text-muted text-[10px] uppercase">Loading Modules...</span>
-                <span className="font-mono text-bone text-[10px] uppercase">Launch Window: Q2/Q3 2026</span>
+            <div className="flex justify-between items-start w-full">
+                <TimelineDot label="Foundation Phase" />
+                <TimelineDot label="Clinical Board Assembly" active />
+                <TimelineDot label="Global Launch Q3 2026" />
             </div>
         </FadeIn>
 
-        {/* Specialists (Tech Specs) */}
+        {/* Specialists (Tech Specs - Organic Style) */}
         <FadeIn delay={300}>
-            <div className="flex flex-wrap justify-center gap-3 mb-20 opacity-90 max-w-2xl mx-auto">
-                {['Functional Neurologists', 'Osteopaths', 'Somatic Therapists', 'ANS Experts'].map((tech) => (
-                    <span key={tech} className="px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-xs font-mono text-muted uppercase tracking-wider backdrop-blur-sm hover:border-cyan/30 transition-colors duration-300">
+            <div className="flex flex-wrap justify-center gap-4 mb-20 max-w-3xl mx-auto">
+                {['Functional Neurology', 'Osteopathy', 'Somatic Therapy', 'Audiology'].map((tech) => (
+                    <span key={tech} className="px-6 py-3 rounded-full bg-gold/5 border border-gold text-sm font-sans text-bone font-medium tracking-wide backdrop-blur-sm hover:bg-gold/10 transition-colors duration-300 shadow-[0_0_10px_rgba(212,180,131,0.1)]">
                         {tech}
                     </span>
                 ))}
@@ -56,30 +50,27 @@ export const VisionSection: React.FC = () => {
         </FadeIn>
 
         {/* Waitlist Form */}
-        <FadeIn delay={400} className="w-full max-w-md mx-auto">
+        <FadeIn delay={400} className="w-full max-w-lg mx-auto">
           <div className="flex items-center justify-center gap-2 mb-4">
-             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-             <span className="font-sans text-[10px] tracking-widest uppercase text-green-400/90 font-medium">Early Access: OPEN</span>
+             <div className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse"></div>
+             <span className="font-sans text-[11px] tracking-widest uppercase text-teal font-medium">Early Access Waitlist</span>
           </div>
 
           <form className="group relative" onSubmit={(e) => e.preventDefault()}>
-            <div className="flex p-1 bg-white/5 border border-white/10 rounded-full focus-within:border-cyan/50 focus-within:bg-white/10 transition-all duration-300 shadow-lg">
+            <div className="flex flex-col md:flex-row p-1.5 bg-white/5 border border-white/10 rounded-full focus-within:border-teal/30 focus-within:bg-white/10 transition-all duration-300 gap-2">
                 <input 
                   type="email" 
-                  placeholder="Enter your email address" 
-                  className="flex-grow bg-transparent border-none px-6 py-3 text-bone placeholder-muted/40 focus:outline-none focus:ring-0 text-sm font-sans"
+                  placeholder="Your email address" 
+                  className="flex-grow bg-transparent border-none px-6 py-3 text-bone placeholder-muted/50 focus:outline-none focus:ring-0 text-base font-sans text-center md:text-left w-full"
                 />
                 <button 
                   type="submit"
-                  className="px-6 py-3 bg-bone text-void font-sans font-bold uppercase tracking-widest text-xs rounded-full hover:bg-cyan hover:shadow-[0_0_20px_rgba(0,212,255,0.5)] transition-all duration-300 whitespace-nowrap"
+                  className="px-8 py-3 bg-bone text-void font-sans font-bold uppercase tracking-widest text-xs rounded-full hover:bg-teal hover:text-white transition-all duration-300 whitespace-nowrap shadow-lg"
                 >
-                  Join Priority Waitlist
+                  Secure Early Access
                 </button>
             </div>
           </form>
-          <p className="mt-4 text-xs text-muted/40 font-sans">
-              Limited spots available for the beta cohort.
-          </p>
         </FadeIn>
 
       </div>

@@ -15,10 +15,11 @@
             colors: {
               void: '#020609',
               surface: '#0a121a',
-              bone: '#E0E4E8',
-              muted: '#8892a0',
-              cyan: '#00D4FF',
-              gold: '#C8B085',
+              bone: '#E2E8F0', // Slightly more readable white
+              muted: '#94A3B8',
+              teal: '#2DD4BF', // Organic Bioluminescence
+              gold: '#D4B483', // Muted, warm gold
+              blue: '#3B82F6', // Anxious blue for left side of spectrum
             },
             fontFamily: {
               serif: ['"Playfair Display"', 'serif'],
@@ -27,20 +28,25 @@
             animation: {
               'float': 'float 8s ease-in-out infinite',
               'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'spin-slow': 'spin 20s linear infinite',
             },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              }
-            }
           },
         },
       }
     </script>
     <style>
-      /* Custom Scrollbar for Deep Calm feel */
+      /* Base Font Size Increase for Readability (50+ demographic) */
+      html {
+        font-size: 18px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: #020609;
+        color: #E2E8F0;
+        overflow-x: hidden;
+      }
+
+      /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -53,16 +59,6 @@
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #334155; 
-      }
-      
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        background-color: #020609;
-        color: #E0E4E8;
-        overflow-x: hidden;
       }
     </style>
   <script type="importmap">
