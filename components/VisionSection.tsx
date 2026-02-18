@@ -1,65 +1,87 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { FadeIn } from './FadeIn';
 
 export const VisionSection: React.FC = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const totalHeight = rect.height;
-        // Calculate progress based on how much of the section has been scrolled past the middle of viewport
-        const progress = Math.min(Math.max((windowHeight / 2 - rect.top) / (totalHeight / 2), 0), 1);
-        setScrollProgress(progress * 100);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section ref={sectionRef} className="relative py-40 px-6 flex flex-col items-center justify-center min-h-[80vh]">
-      <div className="container mx-auto max-w-4xl text-center">
+    <section className="relative py-40 md:py-52 px-6 flex flex-col items-center justify-center min-h-[90vh] overflow-hidden">
+      {/* Background Atmosphere */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-cyan/5 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
+      
+      <div className="container mx-auto max-w-4xl text-center relative z-10">
         
-        {/* Progress Line */}
-        <div className="w-full h-[2px] bg-white/10 mb-16 relative overflow-hidden rounded-full">
-            <div 
-                className="absolute top-0 left-0 h-full bg-cyan shadow-[0_0_15px_rgba(0,212,255,0.8)] transition-all duration-100 ease-linear"
-                style={{ width: `${scrollProgress}%` }}
-            />
-        </div>
-
+        {/* Header */}
         <FadeIn>
-          <h2 className="font-serif text-5xl md:text-6xl text-bone mb-4">
-            The Neuro-Somatic Reset Protocol
+          <span className="font-sans text-gold/80 text-sm tracking-[0.2em] uppercase mb-6 block">Future Pacing</span>
+          <h2 className="font-serif text-5xl md:text-7xl text-bone mb-12 leading-[1.05]">
+            The Neuro-Somatic<br/>Reset Protocol
           </h2>
-          <p className="font-sans text-xl md:text-2xl text-gold mb-12">
-            A 12-week precision program. Launching Q3 2026.
+        </FadeIn>
+
+        {/* Progress System */}
+        <FadeIn delay={200} className="w-full max-w-xl mx-auto mb-12">
+            <div className="flex justify-between items-end mb-3">
+                <span className="font-mono text-cyan text-xs tracking-widest uppercase">System Reboot Sequence</span>
+                <span className="font-mono text-cyan text-xs">75%</span>
+            </div>
+            
+            {/* Bar Track */}
+            <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden relative">
+                {/* Bar Fill */}
+                <div className="absolute inset-y-0 left-0 bg-cyan w-[75%] shadow-[0_0_15px_rgba(0,212,255,0.5)]">
+                    {/* Shimmer Animation */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent w-full -translate-x-full animate-[shimmer_2s_infinite]"></div>
+                </div>
+            </div>
+            <style>{`
+                @keyframes shimmer {
+                    100% { transform: translateX(100%); }
+                }
+            `}</style>
+
+            <div className="flex justify-between items-start mt-3">
+                <span className="font-mono text-muted text-[10px] uppercase">Loading Modules...</span>
+                <span className="font-mono text-bone text-[10px] uppercase">Launch Window: Q2/Q3 2026</span>
+            </div>
+        </FadeIn>
+
+        {/* Specialists (Tech Specs) */}
+        <FadeIn delay={300}>
+            <div className="flex flex-wrap justify-center gap-3 mb-20 opacity-90 max-w-2xl mx-auto">
+                {['Functional Neurologists', 'Osteopaths', 'Somatic Therapists', 'ANS Experts'].map((tech) => (
+                    <span key={tech} className="px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-xs font-mono text-muted uppercase tracking-wider backdrop-blur-sm hover:border-cyan/30 transition-colors duration-300">
+                        {tech}
+                    </span>
+                ))}
+            </div>
+        </FadeIn>
+
+        {/* Waitlist Form */}
+        <FadeIn delay={400} className="w-full max-w-md mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-4">
+             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_#22c55e]"></div>
+             <span className="font-sans text-[10px] tracking-widest uppercase text-green-400/90 font-medium">Early Access: OPEN</span>
+          </div>
+
+          <form className="group relative" onSubmit={(e) => e.preventDefault()}>
+            <div className="flex p-1 bg-white/5 border border-white/10 rounded-full focus-within:border-cyan/50 focus-within:bg-white/10 transition-all duration-300 shadow-lg">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email address" 
+                  className="flex-grow bg-transparent border-none px-6 py-3 text-bone placeholder-muted/40 focus:outline-none focus:ring-0 text-sm font-sans"
+                />
+                <button 
+                  type="submit"
+                  className="px-6 py-3 bg-bone text-void font-sans font-bold uppercase tracking-widest text-xs rounded-full hover:bg-cyan hover:shadow-[0_0_20px_rgba(0,212,255,0.5)] transition-all duration-300 whitespace-nowrap"
+                >
+                  Join Priority Waitlist
+                </button>
+            </div>
+          </form>
+          <p className="mt-4 text-xs text-muted/40 font-sans">
+              Limited spots available for the beta cohort.
           </p>
         </FadeIn>
 
-        <FadeIn delay={200} className="w-full max-w-md mx-auto">
-          <form className="flex flex-col md:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="flex-grow bg-white/5 border border-white/10 rounded-full px-6 py-4 text-bone placeholder-muted focus:outline-none focus:border-cyan/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
-            />
-            <button 
-              type="submit"
-              className="px-8 py-4 bg-bone text-void font-sans font-bold uppercase tracking-wide text-sm rounded-full hover:bg-cyan hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300"
-            >
-              Get Early Access
-            </button>
-          </form>
-          <p className="mt-4 text-xs text-muted font-sans">
-            Limited cohort size. Join the waitlist to secure priority.
-          </p>
-        </FadeIn>
       </div>
     </section>
   );

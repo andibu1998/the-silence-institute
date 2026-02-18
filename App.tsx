@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navigation } from './components/Navigation';
-import { NeuroOrb } from './components/NeuroOrb';
 import { Hero } from './components/Hero';
 import { ProblemSection } from './components/ProblemSection';
 import { PhilosophySection } from './components/PhilosophySection';
@@ -19,13 +18,8 @@ const App: React.FC = () => {
         <Navigation />
         
         <main className="flex-grow flex flex-col w-full">
-          <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-             {/* The Neuro Orb lives in the background of the Hero */}
-            <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-              <NeuroOrb />
-            </div>
-            <Hero />
-          </section>
+          {/* Hero handles its own layout and background orb now */}
+          <Hero />
 
           <ProblemSection />
           <PhilosophySection />

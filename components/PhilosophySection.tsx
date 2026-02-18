@@ -1,58 +1,105 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
 
-const TruthItem = ({ number, title, description, delay }: { number: string, title: string, description: string, delay: number }) => (
-  <FadeIn delay={delay} className="flex flex-col md:flex-row gap-6 md:gap-12 border-t border-white/10 py-12 hover:bg-white/[0.02] transition-colors duration-500 group">
-    <div className="font-sans text-gold/60 text-sm tracking-widest uppercase w-32 pt-2">Truth #{number}</div>
-    <div className="flex-1">
-      <h3 className="font-serif text-3xl md:text-4xl text-bone mb-4 group-hover:text-cyan transition-colors duration-500">
-        {title}
-      </h3>
-      <p className="font-sans text-muted text-lg leading-relaxed max-w-2xl">
-        {description}
-      </p>
+interface BentoCardProps {
+  number: string;
+  title: string;
+  text: string;
+  className?: string;
+  delay?: number;
+}
+
+const BentoCard: React.FC<BentoCardProps> = ({ number, title, text, className = "", delay = 0 }) => (
+  <FadeIn delay={delay} className={`h-full ${className}`}>
+    <div className="group relative h-full min-h-[300px] p-8 md:p-12 rounded-3xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] hover:border-cyan/50 hover:bg-white/[0.04] hover:shadow-[0_0_40px_rgba(0,212,255,0.05)] transition-all duration-700 overflow-hidden flex flex-col justify-end">
+      
+      {/* Big Background Number */}
+      <span className="absolute -top-10 -right-6 font-serif text-[8rem] md:text-[12rem] text-white/[0.03] group-hover:text-cyan/[0.08] transition-colors duration-700 leading-none select-none pointer-events-none z-0">
+        {number}
+      </span>
+
+      {/* Content */}
+      <div className="relative z-10">
+          <h3 className="font-serif text-3xl md:text-4xl text-bone mb-6 group-hover:text-white transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="font-sans text-muted text-lg md:text-xl leading-relaxed font-light border-l-2 border-white/10 pl-6 group-hover:border-cyan/50 transition-colors duration-500">
+            {text}
+          </p>
+      </div>
     </div>
   </FadeIn>
 );
 
 export const PhilosophySection: React.FC = () => {
   return (
-    <section className="relative py-32 px-6 bg-surface/30">
-      <div className="container mx-auto max-w-5xl">
-        <FadeIn className="mb-20">
-          <h2 className="font-sans text-cyan text-sm tracking-[0.2em] uppercase mb-4">The Philosophy</h2>
-          <div className="h-px w-20 bg-cyan/50"></div>
+    <section className="relative py-32 md:py-48 px-6 bg-surface/30 border-t border-white/5">
+        {/* Background Gradient Mesh */}
+        <div className="absolute inset-0 bg-gradient-to-b from-void via-surface/50 to-void pointer-events-none" />
+
+      <div className="relative z-10 container mx-auto max-w-7xl">
+        
+        {/* Section Header */}
+        <FadeIn className="mb-24 md:mb-32 max-w-3xl">
+          <span className="font-mono text-cyan text-xs tracking-[0.3em] uppercase block mb-6 pl-1">
+            Core Philosophy
+          </span>
+          <h2 className="font-serif text-5xl md:text-7xl text-bone mb-8 leading-[1.1]">
+            The Neuro-Somatic <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-bone to-muted opacity-80">Manifesto</span>
+          </h2>
+          <p className="font-sans text-xl text-muted/80 max-w-xl leading-relaxed">
+            We don't believe in "coping." We believe in recalibration. Here is the 5-point architecture of our approach.
+          </p>
         </FadeIn>
 
-        <div className="flex flex-col">
-          <TruthItem 
-            number="1" 
-            title="Tinnitus Is a Software Problem." 
-            description="Your brain's noise-canceling filter is stuck. We teach it to turn back on." 
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 auto-rows-fr">
+          
+          {/* Row 1 */}
+          {/* Card 01 - Span 7 cols */}
+          <BentoCard 
+            className="lg:col-span-7"
+            number="01"
+            title="The Software Problem" 
+            text="Your brain's noise-canceling filter is stuck. It's a feedback loop error, not permanent damage. We teach it to turn back on." 
             delay={0}
           />
-          <TruthItem 
-            number="2" 
-            title="Physical Tension Modulates Volume." 
-            description="Jaw clenching sends signals directly to the auditory center. We release the triggers." 
+
+          {/* Card 02 - Span 5 cols */}
+          <BentoCard 
+            className="lg:col-span-5"
+            number="02"
+            title="Somatic Modulation" 
+            text="Jaw clenching and neck strain send signals directly into your auditory center. We release the triggers." 
             delay={100}
           />
-          <TruthItem 
-            number="3" 
-            title="The Brain Can't Ignore a Threat." 
-            description="As long as the sound is labeled 'danger,' the filter stays off. We remove the label." 
+
+          {/* Row 2 */}
+          {/* Card 03 - Span 5 cols */}
+          <BentoCard 
+            className="lg:col-span-5"
+            number="03"
+            title="The Threat Label" 
+            text="As long as the sound is labeled 'dangerous,' the filter stays off. We remove the label." 
             delay={200}
           />
-          <TruthItem 
-            number="4" 
-            title="Stress Amplifies the Signal." 
-            description="Fight-or-flight makes neurons fire faster. We activate the calm switch." 
+
+           {/* Card 04 - Span 7 cols */}
+           <BentoCard 
+            className="lg:col-span-7"
+            number="04"
+            title="The Stress Amplifier" 
+            text="Fight-or-flight mode makes neurons fire faster. We activate your body's natural calm switch." 
             delay={300}
           />
-          <TruthItem 
-            number="5" 
-            title="Precision Medicine." 
-            description="Somatic ≠ Stress-induced. We customize the protocol." 
+
+          {/* Row 3 */}
+          {/* Card 05 - Full Width (12 cols) */}
+          <BentoCard 
+            className="lg:col-span-12"
+            number="05"
+            title="Precision Medicine" 
+            text="One Size Fits All Doesn't Work. Somatic tinnitus ≠ Stress-induced tinnitus. We customize the protocol to your subtype." 
             delay={400}
           />
         </div>
