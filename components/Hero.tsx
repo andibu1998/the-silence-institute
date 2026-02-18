@@ -83,7 +83,12 @@ export const Hero: React.FC = () => {
         className="absolute inset-0 z-0 opacity-60 pointer-events-none"
       />
 
-      <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center py-20">
+      {/* 
+        Container
+        - Mobile: pt-40 to clear fixed nav
+        - Desktop: Centered vertically
+      */}
+      <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-start pt-40 pb-20 md:justify-center md:pt-0 md:pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-24 items-center max-w-7xl mx-auto">
             
             {/* Left Column: Headline */}
@@ -92,7 +97,7 @@ export const Hero: React.FC = () => {
                     THE NEURO-SOMATIC TINNITUS SOLUTION
                 </span>
                 <h1 className="font-serif leading-[1.1] tracking-tight"
-                    style={{ fontSize: 'clamp(3rem, 5vw, 6rem)' }}>
+                    style={{ fontSize: 'clamp(2.5rem, 5vw, 6rem)' }}>
                     <span className="text-muted block mb-2 font-normal">Silence Isn't Gone.</span>
                     <span className="text-bone drop-shadow-[0_0_20px_rgba(255,255,255,0.1)] font-normal">
                         It's Just Waiting to Be Restored.
@@ -114,12 +119,12 @@ export const Hero: React.FC = () => {
                     </p>
                 </div>
 
-                <button className="group relative px-8 py-4 bg-transparent overflow-hidden rounded-full border border-white/20 hover:border-teal/50 transition-all duration-500">
+                <a href="#trust-bar" className="group relative px-8 py-4 bg-transparent overflow-hidden rounded-full border border-white/20 hover:border-teal/50 transition-all duration-500 inline-block">
                   <div className="absolute inset-0 bg-teal/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
                   <span className="relative z-10 font-sans tracking-widest uppercase text-xs font-bold text-bone group-hover:text-teal transition-colors">
                     Discover Our Approach ↓
                   </span>
-                </button>
+                </a>
             </FadeIn>
         </div>
       </div>

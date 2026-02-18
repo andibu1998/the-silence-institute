@@ -35,7 +35,7 @@ const ProblemCard = ({ icon, title, text }: { icon: React.ReactNode, title: stri
 
 export const ProblemSection: React.FC = () => {
   return (
-    <section className="relative py-32 px-6">
+    <section id="problem" className="relative py-32 px-6 scroll-mt-24">
       <div className="container mx-auto max-w-7xl">
         
         {/* Header */}

@@ -64,9 +64,14 @@ export const PractitionersSection: React.FC = () => {
                         ))}
                     </ul>
 
-                    <button className="w-full py-4 bg-gold hover:bg-[#cbb086] text-[#0C0E10] font-sans font-bold uppercase tracking-widest text-xs rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/20 transform hover:-translate-y-0.5">
+                    <a 
+                        href="https://api.leadconnectorhq.com/widget/booking/6dRCtOCSsFTrGE38glqp" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full text-center py-4 bg-gold hover:bg-[#cbb086] text-[#0C0E10] font-sans font-bold uppercase tracking-widest text-xs rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/20 transform hover:-translate-y-0.5"
+                    >
                         Apply for Clinical Board
-                    </button>
+                    </a>
                     <p className="text-center mt-4 text-[10px] text-muted uppercase tracking-widest">
                         Selection Process: Invitation Only
                     </p>

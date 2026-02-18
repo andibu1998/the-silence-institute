@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
+import { TrustBar } from './components/TrustBar';
 import { ProblemSection } from './components/ProblemSection';
 import { PhilosophySection } from './components/PhilosophySection';
 import { VisionSection } from './components/VisionSection';
@@ -10,7 +11,7 @@ import { NoiseOverlay } from './components/NoiseOverlay';
 
 const App: React.FC = () => {
   return (
-    <div className="relative min-h-screen w-full bg-void selection:bg-cyan selection:text-void overflow-hidden">
+    <div className="relative min-h-screen w-full bg-void selection:bg-teal selection:text-void overflow-hidden">
       {/* Texture & Background Effects */}
       <NoiseOverlay />
       
@@ -18,9 +19,13 @@ const App: React.FC = () => {
         <Navigation />
         
         <main className="flex-grow flex flex-col w-full">
-          {/* Hero handles its own layout and background orb now */}
+          {/* Hero Section */}
           <Hero />
 
+          {/* Scientific Foundation Bar (Below the Fold) */}
+          <TrustBar />
+
+          {/* Main Content Sections */}
           <ProblemSection />
           <PhilosophySection />
           <VisionSection />
